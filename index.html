@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Ubuntu Security Notices</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">パッケージ名</th>
+            <th scope="col">情報</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-danger" id="critical">
+            <th colspan=2>Critical</td>
+          </tr>
+          <tr class="table-danger" id="high">
+            <td colspan=2>High</td>
+          </tr>
+          <tr class="table-warning" id="medium">
+            <td colspan=2>Medium</td>
+          </tr>
+          <tr class="table-info" id="low">
+            <td colspan=2>Low</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="container">
+      <footer class="footer">
+        <small>
+          Copyright &copy; <a href="https://twitter.com/ngoktanio">Naoki Oketani</a><br>
+          Data from <a href="https://usn.ubuntu.com/">Ubuntu security notices</a>
+        </small>
+      </footer>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+      $(function(){
+        $.ajax({
+          url: 'https://84qu5pi87b.execute-api.ap-northeast-1.amazonaws.com/dev',
+          type: 'GET',
+          data: {}
+        }).done(data => {
+          console.log(data);
+          for(let i = 0; i < data.length; i++) {
+            if (data[i]['severity'] === 'Critical') {
+              $('#critical').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
+            } else if (data[i]['severity'] === 'High') {
+              $('#high').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
+            } else if (data[i]['severity'] === 'Medium') {
+              $('#medium').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
+            } else if (data[i]['severity'] === 'Low') {
+              $('#low').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
+            }
+          }
+        }).fail(data => {
+          console.error(data);
+        }).always(data => {
+          
+        });
+      });
+    </script>
+  </body>
+</html>
