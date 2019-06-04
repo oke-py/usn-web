@@ -50,8 +50,10 @@
         }).done(data => {
           console.log(data);
           for(let i = 0; i < data.length; i++) {
-            if (data[i]['severity'] === 'Medium') {
-              $('#meduim').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
+            if (data[i]['severity'] === 'High') {
+              $('#high').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
+            } else if (data[i]['severity'] === 'Medium') {
+              $('#medium').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
             } else if (data[i]['severity'] === 'Low') {
               $('#low').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
             }
