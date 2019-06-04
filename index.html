@@ -21,7 +21,17 @@
 
     <script>
       $(function(){
-        console.log('ready 1');
+        $.ajax({
+          url: 'https://84qu5pi87b.execute-api.ap-northeast-1.amazonaws.com/dev',
+          type: 'GET',
+          data: {}
+        }).done(data => {
+          console.log(data);
+        }).fail(data => {
+          console.error(data);
+        }).always(data => {
+          
+        });
       });
     </script>
   </body>
