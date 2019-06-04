@@ -22,6 +22,9 @@
           </tr>
         </thead>
         <tbody>
+          <tr class="table-danger" id="critical">
+            <th colspan=2>Critical</td>
+          </tr>
           <tr class="table-danger" id="high">
             <td colspan=2>High</td>
           </tr>
@@ -59,7 +62,9 @@
         }).done(data => {
           console.log(data);
           for(let i = 0; i < data.length; i++) {
-            if (data[i]['severity'] === 'High') {
+            if (data[i]['severity'] === 'Critical') {
+              $('#critical').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
+            } else if (data[i]['severity'] === 'High') {
               $('#high').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
             } else if (data[i]['severity'] === 'Medium') {
               $('#medium').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
