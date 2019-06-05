@@ -19,20 +19,21 @@
           <tr>
             <th scope="col">パッケージ名</th>
             <th scope="col">情報</th>
+            <th scope="col">公開日</th>
           </tr>
         </thead>
         <tbody>
           <tr class="table-danger" id="critical">
-            <th colspan=2>Critical</td>
+            <th colspan=3>Critical</td>
           </tr>
           <tr class="table-danger" id="high">
-            <td colspan=2>High</td>
+            <td colspan=3>High</td>
           </tr>
           <tr class="table-warning" id="medium">
-            <td colspan=2>Medium</td>
+            <td colspan=3>Medium</td>
           </tr>
           <tr class="table-info" id="low">
-            <td colspan=2>Low</td>
+            <td colspan=3>Low</td>
           </tr>
         </tbody>
       </table>
@@ -62,14 +63,16 @@
         }).done(data => {
           console.log(data);
           for(let i = 0; i < data.length; i++) {
+            const published = data[i]['Published'].split('T')[0]
+            let tr = '<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td><td>' + published + '</td></tr>';
             if (data[i]['Priority'] === 'Critical') {
-              $('#critical').after('<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td></tr>')
+              $('#critical').after(tr);
             } else if (data[i]['Priority'] === 'High') {
-              $('#high').after('<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td></tr>')
+              $('#high').after(tr);
             } else if (data[i]['Priority'] === 'Medium') {
-              $('#medium').after('<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td></tr>')
+              $('#medium').after(tr);
             } else if (data[i]['Priority'] === 'Low') {
-              $('#low').after('<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td></tr>')
+              $('#low').after(tr);
             }
           }
         }).fail(data => {
