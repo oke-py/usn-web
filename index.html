@@ -56,20 +56,20 @@
     <script>
       $(function(){
         $.ajax({
-          url: 'https://84qu5pi87b.execute-api.ap-northeast-1.amazonaws.com/dev',
+          url: 'https://ay7hlnhsld.execute-api.ap-northeast-1.amazonaws.com/prod',
           type: 'GET',
           data: {}
         }).done(data => {
           console.log(data);
           for(let i = 0; i < data.length; i++) {
-            if (data[i]['severity'] === 'Critical') {
-              $('#critical').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
-            } else if (data[i]['severity'] === 'High') {
-              $('#high').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
-            } else if (data[i]['severity'] === 'Medium') {
-              $('#medium').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
-            } else if (data[i]['severity'] === 'Low') {
-              $('#low').after('<tr><td>' + data[i]['name'] + '</td><td>' + data[i]['usn'] + '</td></tr>')
+            if (data[i]['Priority'] === 'Critical') {
+              $('#critical').after('<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td></tr>')
+            } else if (data[i]['Priority'] === 'High') {
+              $('#high').after('<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td></tr>')
+            } else if (data[i]['Priority'] === 'Medium') {
+              $('#medium').after('<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td></tr>')
+            } else if (data[i]['Priority'] === 'Low') {
+              $('#low').after('<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td></tr>')
             }
           }
         }).fail(data => {
