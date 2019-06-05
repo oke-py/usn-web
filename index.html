@@ -56,10 +56,13 @@
 
     <script>
       $(function(){
+        const month = location.hash.slice(1);
         $.ajax({
           url: 'https://ay7hlnhsld.execute-api.ap-northeast-1.amazonaws.com/prod',
           type: 'GET',
-          data: {}
+          data: {
+            m: month
+          }
         }).done(data => {
           console.log(data);
           for(let i = 0; i < data.length; i++) {
