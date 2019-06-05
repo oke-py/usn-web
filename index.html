@@ -76,6 +76,14 @@
             m: month
           }
         }).done(data => {
+          data.sort(function(a, b) {
+            if (a.Pkg < b.Pkg) {
+              return 1;
+            } else {
+              return -1;
+            }
+          });
+
           for(let i = 0; i < data.length; i++) {
             const published = data[i]['Published'].split('T')[0]
             let tr = '<tr><td>' + data[i]['Pkg'] + '</td><td>' + data[i]['ID'] + '</td><td>' + published + '</td></tr>';
