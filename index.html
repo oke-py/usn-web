@@ -60,8 +60,13 @@
         const y = now.getFullYear()
         const m = String(now.getMonth() + 1).padStart(2, '0');
         const ym = y + '-' + m;
-        const month = location.hash.slice(1) || ym;
         
+        let month = location.hash.slice(1);
+        if (!month.match('/^\d{4}-\d{2}$/')) {
+          month = ym;
+        }
+        console.log(month);
+
         $.ajax({
           url: 'https://ay7hlnhsld.execute-api.ap-northeast-1.amazonaws.com/prod',
           type: 'GET',
