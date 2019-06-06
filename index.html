@@ -42,6 +42,19 @@
         </tbody>
       </table>
     </div>
+
+    <div class="container">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a id="prev" class="page-link" href="#">&laquo; Previous</a>
+          </li>
+          <li class="page-item">
+            <a id="next" class="page-link" href="#">Next &raquo;</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
     
     <div class="container">
       <footer class="footer">
@@ -70,6 +83,14 @@
           month = ym;
         }
         console.log(month);
+        
+        const prev = new Date(month.split('-')[0], parseInt(month.split('-'), 10) - 1, 1);
+        const prevHash = prev.getFullYear() + '-' + String(prev.getMonth() + 1).padStart(2, '0');
+        const next = new Date(month.split('-')[0], parseInt(month.split('-'), 10) + 1, 1);
+        const nextHash = next.getFullYear() + '-' + String(next.getMonth() + 1).padStart(2, '0');
+        
+        $('#prev').attr('href', '#' + prevHash);
+        $('#next').attr('href', '#' + nextHash);
 
         $.ajax({
           url: 'https://ay7hlnhsld.execute-api.ap-northeast-1.amazonaws.com/prod',
