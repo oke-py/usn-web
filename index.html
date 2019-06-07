@@ -113,6 +113,10 @@
             });
 
             for(let i = 0; i < data.length; i++) {
+              if (!data[i]['Affects1604'] && !data[i]['Affects1804']) {
+                break;
+              }
+              
               const affects1604 = data[i]['Affects1604'] ? 'x' : '';
               const affects1804 = data[i]['Affects1804'] ? 'x' : '';
               const published = data[i]['Published'].split('T')[0];
