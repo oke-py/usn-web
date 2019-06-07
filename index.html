@@ -107,24 +107,24 @@
                 return -1;
               }
             });
-          }
 
-          for(let i = 0; i < data.length; i++) {
-            const affects1604 = data[i]['Affects1604'] ? 'x' : '';
-            const affects1804 = data[i]['Affects1804'] ? 'x' : '';
-            const published = data[i]['Published'].split('T')[0];
-            const link = 'https://usn.ubuntu.com/' + data[i]['ID'].slice(4) + '/';
-            let tr = '<tr><td>' + data[i]['Pkg'] + '</td><td>' + affects1604 + '</td><td>' + affects1804 + '</td><td><a href="' + link + '">' + data[i]['ID'] + '</a></td><td>' + published + '</td></tr>';
-            if (data[i]['Priority'] === 'Critical') {
-              $('#critical').after(tr);
-            } else if (data[i]['Priority'] === 'High') {
-              $('#high').after(tr);
-            } else if (data[i]['Priority'] === 'Medium') {
-              $('#medium').after(tr);
-            } else if (data[i]['Priority'] === 'Low') {
-              $('#low').after(tr);
-            } else if (data[i]['Priority'] === 'Unknown') {
-              $('#unknown').after(tr);
+            for(let i = 0; i < data.length; i++) {
+              const affects1604 = data[i]['Affects1604'] ? 'x' : '';
+              const affects1804 = data[i]['Affects1804'] ? 'x' : '';
+              const published = data[i]['Published'].split('T')[0];
+              const link = 'https://usn.ubuntu.com/' + data[i]['ID'].slice(4) + '/';
+              let tr = '<tr><td>' + data[i]['Pkg'] + '</td><td>' + affects1604 + '</td><td>' + affects1804 + '</td><td><a href="' + link + '">' + data[i]['ID'] + '</a></td><td>' + published + '</td></tr>';
+              if (data[i]['Priority'] === 'Critical') {
+                $('#critical').after(tr);
+              } else if (data[i]['Priority'] === 'High') {
+                $('#high').after(tr);
+              } else if (data[i]['Priority'] === 'Medium') {
+                $('#medium').after(tr);
+              } else if (data[i]['Priority'] === 'Low') {
+                $('#low').after(tr);
+              } else if (data[i]['Priority'] === 'Unknown') {
+                $('#unknown').after(tr);
+              }
             }
           }
         }).fail(data => {
