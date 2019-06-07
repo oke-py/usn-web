@@ -77,6 +77,8 @@
 
     <script>
       const updateView = () => {
+        $('tr .usn-item').remove();
+        
         const now = new Date();
         const y = now.getFullYear()
         const m = String(now.getMonth() + 1).padStart(2, '0');
@@ -117,7 +119,7 @@
               const affects1804 = data[i]['Affects1804'] ? 'x' : '';
               const published = data[i]['Published'].split('T')[0];
               const link = 'https://usn.ubuntu.com/' + data[i]['ID'].slice(4) + '/';
-              let tr = '<tr><td>' + data[i]['Pkg'] + '</td><td>' + affects1604 + '</td><td>' + affects1804 + '</td><td><a href="' + link + '">' + data[i]['ID'] + '</a></td><td>' + published + '</td></tr>';
+              let tr = '<tr class="usn-item"><td>' + data[i]['Pkg'] + '</td><td>' + affects1604 + '</td><td>' + affects1804 + '</td><td><a href="' + link + '">' + data[i]['ID'] + '</a></td><td>' + published + '</td></tr>';
               if (data[i]['Priority'] === 'Critical') {
                 $('#critical').after(tr);
               } else if (data[i]['Priority'] === 'High') {
