@@ -13,7 +13,7 @@
   <body>
 
     <div class="container">
-      <h3>Ubuntu security notices</h3>
+      <h5>Ubuntu security notices</h5>
     </div>
 
     <div class="container">
@@ -86,7 +86,7 @@
         if (! /^\d{4}-\d{2}$/.test(month)) {
           month = ym;
         }
-        $('h3').text('Ubuntu security notices - ' + month);
+        $('h5').text('Ubuntu security notices - ' + month);
         
         const prev = new Date(month.split('-')[0], parseInt(month.split('-')[1], 10) - 2, 1);
         const prevHash = prev.getFullYear() + '-' + String(prev.getMonth() + 1).padStart(2, '0');
