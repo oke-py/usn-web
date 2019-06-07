@@ -114,7 +114,7 @@
 
             for(let i = 0; i < data.length; i++) {
               if (!data[i]['Affects1604'] && !data[i]['Affects1804']) {
-                break;
+                continue;
               }
               
               const affects1604 = data[i]['Affects1604'] ? 'x' : '';
