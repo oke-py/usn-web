@@ -99,13 +99,15 @@
             m: month
           }
         }).done(data => {
-          data.sort(function(a, b) {
-            if (a.Pkg < b.Pkg) {
-              return 1;
-            } else {
-              return -1;
-            }
-          });
+          if (data) {
+            data.sort(function(a, b) {
+              if (a.Pkg < b.Pkg) {
+                return 1;
+              } else {
+                return -1;
+              }
+            });
+          }
 
           for(let i = 0; i < data.length; i++) {
             const affects1604 = data[i]['Affects1604'] ? 'x' : '';
